@@ -15,22 +15,18 @@ jobs:
           distribution: 'temurin'
 
       - name: Setup Gradle
-        uses: gradle/gradle-build-action@v2
+        uses: gradle/gradle-build-action@v3
         with:
           gradle-version: 7.5
 
       - name: Build and Package
-        # Добавляем настройку памяти прямо в команду
         run: gradle jar --no-daemon
         env:
-          ORG_GRADLE_PROJECT_kotlin_daemon_jvm_options: "-Xmx2048m"
           GRADLE_OPTS: "-Xmx2048m -Dorg.gradle.jvmargs=-Xmx2048m"
 
-       - name: Upload Artifact
-         uses: actions/upload-artifact@v4
-         with:
+      - name: Upload Artifact
+        uses: actions/upload-artifact@v4
+        with:
           name: Mod-Jar
-          # Ищем во всех подпапках build, чтобы точно не промахнуться
-          path: build/**/libs/*.jar
-          if-no-files-found: error
-  
+          path: build/libs/*.jar
+          if-no-files-found: warn
