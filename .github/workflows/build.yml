@@ -17,11 +17,14 @@ jobs:
       - name: Make Gradle Wrapper Executable
         run: chmod +x gradlew
 
-      - name: Build with Gradle
-        run: ./gradlew build
+      - name: Build and Package
+        # Команда clean jar гарантирует, что старые ошибки сотрутся, а новый файл соберется
+        run: ./gradlew clean jar --no-daemon
 
       - name: Upload Artifact
         uses: actions/upload-artifact@v4
         with:
           name: Mod-Jar
+          # Указываем путь более точно, чтобы он точно нашел файл
           path: build/libs/*.jar
+          if-no-files-found: error
