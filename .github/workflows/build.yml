@@ -15,14 +15,16 @@ jobs:
           distribution: 'temurin'
 
       - name: Setup Gradle
-        # Эта штука сама скачает чистый Gradle 7.5 на сервер
         uses: gradle/gradle-build-action@v2
         with:
           gradle-version: 7.5
 
       - name: Build and Package
-        # Запускаем сборку напрямую, игнорируя gradlew в папке
+        # Добавляем настройку памяти прямо в команду
         run: gradle jar --no-daemon
+        env:
+          ORG_GRADLE_PROJECT_kotlin_daemon_jvm_options: "-Xmx2048m"
+          GRADLE_OPTS: "-Xmx2048m -Dorg.gradle.jvmargs=-Xmx2048m"
 
       - name: Upload Artifact
         uses: actions/upload-artifact@v4
