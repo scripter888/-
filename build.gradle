@@ -1,43 +1,17 @@
 plugins {
     id 'fabric-loom' version '0.12-SNAPSHOT'
-    id 'maven-publish'
 }
 
 version = '1.0.0'
-group = 'com.glitch.mod'
-
-repositories {
-    // Репозитории для скачивания библиотек
-}
+archivesBaseName = "glitchmod"
 
 dependencies {
     minecraft "com.mojang:minecraft:1.19"
     mappings "net.fabricmc:yarn:1.19+build.1:v2"
     modImplementation "net.fabricmc:fabric-loader:0.14.9"
-
-    // Мод API
-    modImplementation "net.fabricmc.fabric-api:fabric-api:0.58.0+1.19"
 }
 
-processResources {
-    inputs.property "version", project.version
-    filteringCharset "UTF-8"
-
-    filesMatching("fabric.mod.json") {
-        expand "version": project.version
-    }
-}
-
-tasks.withType(JavaCompile).configureEach {
-    it.options.release = 17
-}
-
-java {
-    withSourcesJar()
-}
-
+// Эта штука заставит Gradle создать файл
 jar {
-    from("LICENSE") {
-        rename { "${it}_${project.archivesBaseName}" }
-    }
+    enabled = true
 }
