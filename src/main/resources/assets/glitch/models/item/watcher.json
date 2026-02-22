@@ -1,0 +1,14 @@
+{
+  "parent": "item/generated",
+  "textures": {
+    "layer0": "glitch:item/scary_1"
+  },
+  "overrides": [
+    { "predicate": { "custom_model_data": 1 }, "model": "glitch:item/scary_1" },
+    { "predicate": { "custom_model_data": 2 }, "model": "glitch:item/scary_2" },
+    { "predicate": { "custom_model_data": 3 }, "model": "glitch:item/scary_3" },
+    { "predicate": { "custom_model_data": 4 }, "model": "glitch:item/scary_4" },
+    { "predicate": { "custom_model_data": 5 }, "model": "glitch:item/scary_5" },
+    { "predicate": { "custom_model_data": 6 }, "model": "glitch:item/scary_6" }
+  ]
+}

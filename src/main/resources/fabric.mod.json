@@ -1,0 +1,27 @@
+{
+  "schemaVersion": 1,
+  "id": "glitch",
+  "version": "1.0.0",
+  "name": "The Glitch Mod",
+  "description": "Don't look up. Six terrifying faces are watching you.",
+  "authors": [
+    "YourName"
+  ],
+  "contact": {
+    "sources": "https://github.com/yourname/glitch"
+  },
+  "license": "MIT",
+  "icon": "assets/glitch/icon.png",
+  "environment": "*",
+  "entrypoints": {
+    "main": [
+      "com.glitchmod.GlitchMod"
+    ]
+  },
+  "depends": {
+    "fabricloader": ">=0.14.9",
+    "minecraft": "1.19",
+    "java": "17",
+    "fabric": "*"
+  }
+}
