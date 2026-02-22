@@ -57,7 +57,7 @@ public class GhostSpawner {
         photoStack.getOrCreateNbt().putInt("CustomModelData", photoId);
 
         // "Надеваем" фотку на голову
-        ghost.setEquippedStack(EquipmentSlot.HEAD, photoStack);
+        ghost.equipStack(EquipmentSlot.HEAD, photoStack);
 
         // Спавним в мир
         world.spawnEntity(ghost);
