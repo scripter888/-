@@ -3,25 +3,25 @@ plugins {
     id 'maven-publish'
 }
 
-version = project.mod_version
-group = project.maven_group
+version = '1.0.0'
+group = 'com.glitch.mod'
 
 repositories {
     // Репозитории для скачивания библиотек
 }
 
 dependencies {
-    // Основное
-    minecraft "com.mojang:minecraft:${project.minecraft_version}"
-    mappings "net.fabricmc:yarn:${project.yarn_mappings}:v2"
-    modImplementation "net.fabricmc:fabric-loader:${project.loader_version}"
+    minecraft "com.mojang:minecraft:1.19"
+    mappings "net.fabricmc:yarn:1.19+build.1:v2"
+    modImplementation "net.fabricmc:fabric-loader:0.14.9"
 
-    // Fabric API (нужен для эффектов, звуков и т.д.)
-    modImplementation "net.fabricmc.fabric-api:fabric-api:${project.fabric_version}"
+    // Мод API
+    modImplementation "net.fabricmc.fabric-api:fabric-api:0.58.0+1.19"
 }
 
 processResources {
     inputs.property "version", project.version
+    filteringCharset "UTF-8"
 
     filesMatching("fabric.mod.json") {
         expand "version": project.version
@@ -29,7 +29,6 @@ processResources {
 }
 
 tasks.withType(JavaCompile).configureEach {
-    it.options.encoding = "UTF-8"
     it.options.release = 17
 }
 
@@ -39,6 +38,6 @@ java {
 
 jar {
     from("LICENSE") {
-        rename { "${it}_${project.archives_base_name}"}
+        rename { "${it}_${project.archivesBaseName}" }
     }
 }
