@@ -14,17 +14,19 @@ jobs:
           java-version: '17'
           distribution: 'temurin'
 
-      - name: Make Gradle Wrapper Executable
-        run: chmod +x gradlew
+      - name: Setup Gradle
+        # Эта штука сама скачает чистый Gradle 7.5 на сервер
+        uses: gradle/gradle-build-action@v2
+        with:
+          gradle-version: 7.5
 
       - name: Build and Package
-        # Команда clean jar гарантирует, что старые ошибки сотрутся, а новый файл соберется
-        run: ./gradlew clean jar --no-daemon
+        # Запускаем сборку напрямую, игнорируя gradlew в папке
+        run: gradle jar --no-daemon
 
       - name: Upload Artifact
         uses: actions/upload-artifact@v4
         with:
           name: Mod-Jar
-          # Указываем путь более точно, чтобы он точно нашел файл
           path: build/libs/*.jar
           if-no-files-found: error
